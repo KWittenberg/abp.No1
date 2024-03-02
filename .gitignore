@@ -267,3 +267,4 @@ src/No1.Blazor.Server.Tiered/Logs/*
 
 # Use abp install-libs to restore.
 **/wwwroot/libs/*
+/src/No1.Web/appsettings.secrets.json
