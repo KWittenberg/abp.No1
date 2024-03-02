@@ -1,0 +1,20 @@
+﻿@page
+@using No1.Localization
+@using Microsoft.Extensions.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Modal
+@model No1.Web.Pages.Categories.CreateModalModel
+@inject IStringLocalizer<No1Resource> L
+@{
+    Layout = null;
+}
+
+<form asp-page="/Categories/CreateModal">
+    <abp-modal>
+        <abp-modal-header title="@L["Create New Category"].Value"></abp-modal-header>
+        <abp-modal-body>
+            <abp-input asp-for="CreateCategory.Name" placeholder="...input New Category" />
+            <abp-input asp-for="CreateCategory.Description" placeholder="...input Description" />
+        </abp-modal-body>
+        <abp-modal-footer buttons="@(AbpModalButtons.Cancel | AbpModalButtons.Save)"></abp-modal-footer>
+    </abp-modal>
+</form>

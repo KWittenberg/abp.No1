@@ -1,0 +1,50 @@
+﻿@page
+@using Microsoft.AspNetCore.Mvc.Localization
+@using No1.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Modal
+@using Volo.Abp.AspNetCore.Mvc.UI.Layout
+@model No1.Web.Pages.Countries.AddCountry
+@inject IPageLayout PageLayout
+@inject IHtmlLocalizer<No1Resource> L
+@{
+    var title = L["Add Country"].Value;
+    PageLayout.Content.Title = title;
+    PageLayout.Content.BreadCrumb.Add("Countries", url: "/Countries");
+    //Layout = "_LayoutADMIN";
+    //Layout = "_Layout";
+}
+
+@*@section scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}*@
+
+<div class="container">
+    <div class="d-flex align-items-center mb-3">
+        <div>
+            <h1 class="page-header mb-0">@title</h1>
+        </div>
+    </div>
+
+    <abp-card background="Light">
+        <div class="mt-3 col-xl-10 offset-xl-1 panel panel-inverse" data-sortable-id="form-stuff-3">
+            
+            <form method="post">
+                <div class="panel-body">
+
+                    <div class="mt-3">
+                        <label for="inputName" class="form-label">Country Name</label>
+                        <input asp-for="Name" type="text" class="form-control form-control-lg" id="inputName" placeholder="... name">
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    
+                    <div align="right" class="mt-3 mb-4">
+                        <input type="submit" class="btn btn-primary" value="Create" />
+                        <a href="/Countries" class="btn btn-default active">Back</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </abp-card>
+</div>

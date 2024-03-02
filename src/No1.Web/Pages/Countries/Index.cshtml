@@ -1,0 +1,64 @@
+﻿@page
+@using Microsoft.AspNetCore.Mvc.Localization
+@using No1.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Modal
+@using Volo.Abp.AspNetCore.Mvc.UI.Layout
+@model No1.Web.Pages.Countries.IndexModel
+@inject IPageLayout PageLayout
+@inject IHtmlLocalizer<No1Resource> L
+@{
+    var countries = L["Countries"].Value;
+    var cities = L["Cities"].Value;
+    var addNew = L["Add New"].Value;
+    PageLayout.Content.Title = countries;
+    //Layout = "_Layout";
+    //Layout = null;
+}
+<!-- Add for Toast -->
+<partial name="_Notification" />
+
+@section scripts {
+    <abp-script src="/Pages/Countries/Countries.js" />
+}
+
+<!-- Countries -->
+<div class="container">
+    <div class="d-flex align-items-center mb-3">
+        <div>
+            <h1 class="page-header mb-0">@countries</h1>
+        </div>
+        <div class="mt-3 ms-auto">
+            <abp-button id="CreateButtonTop" text="@addNew" icon="plus" button-type="Primary" />
+        </div>
+    </div>
+    
+    <abp-card background="Light">
+        <abp-card-header>
+            <abp-row>
+                <abp-column size-md="_6">
+                    <abp-card-title>@countries</abp-card-title>
+                </abp-column>
+                <abp-column size-md="_6" class="text-end">
+                    <abp-button id="CreateButton" text="@addNew" icon="plus" button-type="Primary" />
+                </abp-column>
+            </abp-row>
+        </abp-card-header>
+        <abp-card-body>
+            <abp-table id="CountriesTable"></abp-table>
+        </abp-card-body>
+    </abp-card>
+</div>
+
+
+<!-- ViewModal -->
+<div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <abp-modal-header title="@L["ViewCountry"].Value"></abp-modal-header>
+            <abp-modal-body>
+                <abp-form-content />
+            </abp-modal-body>
+            <abp-modal-footer buttons="@(AbpModalButtons.Close)"></abp-modal-footer>
+        </div>
+    </div>
+</div>

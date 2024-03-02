@@ -1,0 +1,46 @@
+﻿@page
+@using No1.Localization
+@using Microsoft.Extensions.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Modal
+@model No1.Web.Pages.Countries.ViewModalModel
+@inject IStringLocalizer<No1Resource> L
+@{
+    Layout = null;
+}
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Detalji o zemlji</h4>
+            </div>
+            <div class="modal-body">
+                <!-- Ovde će biti prikazani podaci o zemlji -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvori</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+@*<abp-dynamic-form abp-model="Country" asp-page="/Countries/ViewModal">
+<abp-dynamic-form asp-page="/Countries/ViewModal">
+
+    <abp-modal>
+        <abp-modal-header title="@L["ViewCountry"].Value"></abp-modal-header>
+        <abp-modal-body>
+            <abp-form-content />
+        </abp-modal-body>
+        <abp-modal-footer buttons="@(AbpModalButtons.Cancel)"></abp-modal-footer>
+    </abp-modal>
+
+</abp-dynamic-form>*@

@@ -1,0 +1,94 @@
+{
+  "culture": "en",
+  "texts": {
+    "App:00000": "Entity already exists.",
+    "App:00001": "Related entity.",
+
+    "App:00010": "Invalid OIB format.",
+    "App:00011": "Invalid url.",
+
+    "App:00012": "Invalid price.",
+    "App:00013": "Invalid duration.",
+    "App:00014": "Invalid max participants number.",
+    "App:00015": "Invalid start time.",
+
+    "Date:Error:DateNotValid": "Date not valid. Use dd.MM.yyyy format.",
+    "Time:Error:TimeNotValid": "Time not valid.",
+    "Price:Error:PriceNotValid": "Price not valid.",
+    "Rating:Error:RatingNotValid": "Rating not valid.",
+
+    "User:Error:Required:Password": "Password is required.",
+    "User:Error:PasswordMinLength": "Password must be at least 6 characters long.",
+    "User:Error:PasswordTooLong": "Password too long.",
+    "User:Error:PasswordUppercase": "Password must contain at least one uppercase letter.",
+    "User:Error:PasswordLowercase": "Password must contain at least one lowercase letter.",
+    "User:Error:PasswordDigit": "Password must contain at least one digit.",
+    "User:Error:PasswordCharacter": "Password must contain at least one special character.",
+
+    "User:Error:Required:FirstName": "First name is required.",
+    "User:Error:FirstNameLettersOnly": "First name letters only.",
+    "User:Error:FirstNameTooLong": "First name too long.",
+    "User:Error:Required:LastName": "Last name is required.",
+    "User:Error:LastNameTooLong": "Last name too long.",
+    "User:Error:LastNameLettersOnly": "Last name letters only.",
+    "User:Error:Required:Email": "Email is required.",
+    "User:Error:Email": "Invalid email address.",
+    "User:Error:PhoneNumber": "Invalid phone number format.",
+
+    "Country:Error:CountryExists": "Country already exists.",
+    "Country:Error:WrongCountry": "Wrong Country",
+    "Country:Error:Required:Name": "Name is required.",
+    "Country:Error:NameTooLong": "Name length too long.",
+
+    "PostCode:Error:TooLong": "PostCode too long.",
+
+    "City:Error:CityExists": "City already exists.",
+    "City:Error:CityNotExists": "City not exists.",
+    "City:Error:WrongCountry": "Wrong City",
+    "City:Error:Required:Id": "City Id is required.",
+    "City:Error:Required:Name": "Name is required.",
+    "City:Error:NameTooLong": "Name length too long.",
+
+    "TourType:Error:TourTypeExists": "TourType already exists.",
+    "TourType:Error:WrongTourType": "Wrong TourType",
+    "TourType:Error:Required:Name": "Name is required.",
+    "TourType:Error:NameTooLong": "Name length too long.",
+
+    "TourTermin:Error:Required:DateTime": "The DateTime is required.",
+    "TourTermin:Error:Invalid:StartDateTime": "The DateTime must be later than the current DateTime.",
+
+    "TransportationType:Error:TransportationTypeExists": "TransportationType already exists.",
+    "TransportationType:Error:WrongTransportationType": "Wrong TransportationType",
+    "TransportationType:Error:Required:Name": "Name is required.",
+    "TransportationType:Error:NameTooLong": "Name length too long.",
+
+    "Asset:Error:Required:Image": "Image is required.",
+    "Asset:Error:Required:ImageFormat": "Image must be in JPEG or PNG format.",
+    "Asset:Error:ImageFileTooLong": "Image file size must be less than",
+    "Asset:Error:Required:Video": "Video is required.",
+    "Asset:Error:Required:VideoFormat": "Video must be in AVI, MPG or 3GP format.",
+    "Asset:Error:VideoFileTooLong": "Video file size must be less than",
+
+    "Search:Error:Required:QueryTerm": "QueryTerm is required.",
+    "Search:Error:QueryTermMinLength": "QueryTerm must be at least 2 characters long.",
+
+
+    "Menu:Home": "Home",
+
+    "Menu:Admin": "Admin",
+    "Menu:Users": "Users",
+    "Menu:Roles": "Roles",
+
+    "Menu:Geolocation": "Geo Location",
+    "Menu:Geooverview": "Geo Overview",
+    "Menu:Countries": "Countries",
+    "Menu:Cities": "Cities",
+
+    "Menu:Items": "Items",
+    "Menu:Categories": "Categories",
+    "Menu:Products": "Products",
+
+    "Welcome": "Welcome",
+    "LongWelcomeMessage": "Welcome to the WebShop application."
+  }
+}

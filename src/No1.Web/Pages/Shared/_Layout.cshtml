@@ -1,0 +1,42 @@
+﻿@*<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+       
+</head>*@
+<body>
+    <!-- Header -->
+    @*<partial name="_Header" />*@
+
+    
+    <header>
+    
+    </header>
+
+
+    @* <div class="container">
+    <main role="main" class="pb-3">*@
+
+    <!-- Add for Toast -->
+    <partial name="_Notification" />
+    @Html.Partial("_Notification")
+
+    @RenderBody()
+    @*    </main>
+    </div>*@
+
+
+
+
+
+   
+    <!-- For other Razor pages to run Script -->
+    @await RenderSectionAsync("scripts", required: false)
+
+   
+   
+</body>
+</html>

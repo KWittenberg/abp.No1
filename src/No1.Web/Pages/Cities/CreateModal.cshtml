@@ -1,0 +1,19 @@
+﻿@page
+@using No1.Localization
+@using Microsoft.Extensions.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Modal
+@model No1.Web.Pages.Cities.CreateModalModel
+@inject IStringLocalizer<No1Resource> L
+@{
+    Layout = null;
+}
+
+<form asp-page="/Cities/CreateModal">
+    <abp-modal>
+            <abp-modal-header title="@L["Create New City"].Value"></abp-modal-header>
+            <abp-modal-body>
+                <abp-input asp-for="CreateCountry.Name" placeholder="...input New City" />
+            </abp-modal-body>
+            <abp-modal-footer buttons="@(AbpModalButtons.Cancel | AbpModalButtons.Save)"></abp-modal-footer>
+        </abp-modal>
+</form>

@@ -1,0 +1,7 @@
+﻿@using No1.Templates.Email.TestEmail;
+@inherits Volo.Abp.TextTemplating.Razor.RazorTemplatePageBase<TestEmailModel>
+
+<p style="color: red;">From @Model.FromName - @Model.FromEmail</p>
+<p style="color: red;">To @Model.ToName - @Model.ToEmail</p>
+<p style="color: red;">Subject: @Model.Subject</p>
+<p style="color: red;">Body: @Model.Body</p>

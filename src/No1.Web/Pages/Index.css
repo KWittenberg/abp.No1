@@ -1,0 +1,12 @@
+.dark-theme {
+    background-color: #333; /* Postavite boju pozadine na tamnu boju */
+    color: #fff; /* Postavite boju teksta na svijetlu boju */
+}
+
+    .dark-theme th {
+        background-color: #555; /* Postavite boju pozadine zaglavlja tablice na tamnu boju */
+    }
+
+.dark-theme-striped tr:nth-child(odd) {
+    background-color: #444; /* Postavite boju pozadine za neparni redak */
+}

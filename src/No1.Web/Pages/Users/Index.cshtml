@@ -1,0 +1,77 @@
+﻿@page
+@using Microsoft.AspNetCore.Mvc.Localization
+@using No1.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Modal
+@using Volo.Abp.AspNetCore.Mvc.UI.Layout
+@model No1.Web.Pages.Users.IndexModel
+@inject IPageLayout PageLayout
+@inject IHtmlLocalizer<No1Resource> L
+@{
+    var title = L["Users"].Value;
+    var register = L["Register"].Value;
+    var addNew = L["Add New"].Value;
+    PageLayout.Content.Title = title;
+}
+
+<!-- Add for Toast -->
+<partial name="_Notification" />
+
+@section scripts {
+    <abp-script src="/Pages/Users/Users.js" />
+}
+
+<!-- Users -->
+<div class="container">
+    <div class="d-flex align-items-center mb-3">
+        <div>
+            <h1 class="page-header mb-0">@title</h1>
+        </div>
+        <div class="mt-3 ms-auto">
+            <abp-button id="RegisterButton" text="@register" icon="plus" button-type="Primary" />
+            <abp-button id="NewUserButton" text="@addNew" icon="plus" button-type="Primary" />
+        </div>
+    </div>
+
+    <abp-card background="Light">
+        <abp-card-body>
+            <abp-table id="UsersTable"></abp-table>
+        </abp-card-body>
+    </abp-card>
+</div>
+
+
+<!-- ViewModal -->
+<div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <abp-modal-header title="@L["User"].Value"></abp-modal-header>
+            <abp-modal-body>
+                <div class="card mb-3" style="max-width: 540px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="" alt="Avatar" class="img-fluid rounded-start" id="avatar">
+                        </div>
+                        <div class="offset-md-1 col-md-7">
+                            <div class="card-body" id="userDetails">
+                                <h5 class="card-title"><span id="firstName"></span> <span id="lastName"></span></h5>
+                                <p class="card-text"><strong>Roles:</strong> <span id="roles"></span></p>
+                                <p class="card-text"><strong>Date of Birth:</strong> <span id="dateOfBirth"></span></p>
+                                <p class="card-text"><strong>Email:</strong> <span id="email"></span></p>
+                                <p class="card-text"><strong>Address:</strong></p>
+                                <p class="card-text">
+                                    <small class="text-body-secondary">
+                                        <span id="country"></span><br />
+                                        <span id="postCode"></span><br />
+                                        <span id="city"></span><br />
+                                        <span id="street"></span>
+                                    </small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </abp-modal-body>
+            <abp-modal-footer buttons="@(AbpModalButtons.Close)"></abp-modal-footer>
+        </div>
+    </div>
+</div>

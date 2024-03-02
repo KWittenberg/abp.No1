@@ -1,0 +1,10 @@
+{
+    "culture": "hr",
+    "texts": {
+        "Menu:Home": "Početna",
+        "Welcome": "Dobrodošli",
+        "LongWelcomeMessage": "Dobrodošli No1 aplikaciju.",
+        "Countries": "Države", 
+        "New": "Dodaj" 
+    }
+}

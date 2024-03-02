@@ -1,0 +1,101 @@
+﻿@page
+@using Microsoft.AspNetCore.Mvc.Localization
+@using No1.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Layout
+@model No1.Web.Pages.Geooverview.IndexModel
+@inject IPageLayout PageLayout
+@inject IHtmlLocalizer<No1Resource> L
+@{
+    var geooverview = L["Geo Overview"].Value;
+    var addNew = L["Add New"].Value;
+    PageLayout.Content.Title = geooverview;
+
+    var countCountries = Model.Countries.Count;
+    var countCities = Model.Countries.SelectMany(c => c.Cities).Count();
+    var countTranslations = Model.Countries.SelectMany(t => t.Translations).Count();
+
+    //Layout = "_Layout";
+    //Layout = null;
+}
+
+@section scripts {
+    <abp-script src="/Pages/Geooverview/Geooverview.js" />
+}
+
+<!-- Geooverview -->
+<div class="container">
+    <div class="d-flex align-items-center mb-3">
+        <div>
+            <h1 class="page-header mb-0">@geooverview</h1>
+        </div>
+        <div class="mt-3 ms-auto">
+            @*<abp-button id="CreateButtonTop" text="@addNew" icon="plus" button-type="Primary" />*@
+        </div>
+    </div>
+
+
+
+    <!-- BEGIN show -->
+    <div class="row mb-3">
+        <div class="col-xl-4 col-md-6">
+            <div class="widget widget-stats bg-teal">
+                <div class="stats-icon stats-icon-lg"><i class="fa fa-globe fa-fw"></i></div>
+                <div class="stats-content">
+                    <div class="stats-title">COUNTRIES</div>
+                    <div class="stats-progress progress">
+                        <div class="progress-bar" style="width: 70.1%;"></div>
+                    </div>
+                    <div class="stats-desc">Total: @countCountries Countries</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-md-6">
+            <div class="widget widget-stats bg-indigo">
+                <div class="stats-icon stats-icon-lg"><i class="fa fa-language fa-fw"></i></div>
+                <div class="stats-content">
+                    <div class="stats-title">TRANSLATIONS</div>
+                    <div class="stats-progress progress">
+                        <div class="progress-bar" style="width: 76.3%;"></div>
+                    </div>
+                    <div class="stats-desc">Total: @countTranslations Translations</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-md-6">
+            <div class="widget widget-stats bg-blue">
+                <div class="stats-icon stats-icon-lg"><i class="fa fa-location-arrow fa-fw"></i></div>
+                <div class="stats-content">
+                    <div class="stats-title">CITIES</div>
+                    <div class="stats-progress progress">
+                        <div class="progress-bar" style="width: 100%;"></div>
+                    </div>
+                    <div class="stats-desc">Total: @countCities Cities</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END show -->
+    
+    
+    <abp-card>
+        <abp-card-body>
+            <abp-table striped-rows="true" id="GeoOverviewTable"></abp-table>
+        </abp-card-body>
+    </abp-card>
+
+    @*<abp-card background="Light">
+    <abp-card-header>
+    <abp-row>
+    <abp-column size-md="_6">
+    <abp-card-title>@countries</abp-card-title>
+    </abp-column>
+    <abp-column size-md="_6" class="text-end">
+    <abp-button id="CreateButton" text="@addNew" icon="plus" button-type="Primary" />
+    </abp-column>
+    </abp-row>
+    </abp-card-header>
+    <abp-card-body>
+    <abp-table id="CountriesTable"></abp-table>
+    </abp-card-body>
+    </abp-card>*@
+</div>

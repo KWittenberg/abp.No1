@@ -1,0 +1,37 @@
+﻿@page
+@using No1.Localization
+@using Microsoft.Extensions.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Modal
+@model No1.Web.Pages.Users.CreateModalModel
+@inject IStringLocalizer<No1Resource> L
+@{
+    Layout = null;
+}
+
+
+<form asp-page="/Users/CreateModal">
+    <abp-modal>
+        <abp-modal-header title="@L["NewUser"].Value"></abp-modal-header>
+        <abp-modal-body>
+            <abp-input asp-for="ApplicationUser.FirstName" />
+            <abp-input asp-for="ApplicationUser.LastName" />
+            <abp-input asp-for="ApplicationUser.DateOfBirth" />
+        </abp-modal-body>
+        <abp-modal-footer buttons="@(AbpModalButtons.Cancel|AbpModalButtons.Save)"></abp-modal-footer>
+    </abp-modal>
+</form>
+
+
+
+
+
+@*<abp-dynamic-form abp-model="Role" asp-page="/Roles/CreateModal">
+<abp-dynamic-form asp-page="/Roles/CreateModal">
+    <abp-modal>
+        <abp-modal-header title="@L["New"].Value"></abp-modal-header>
+        <abp-modal-body>
+            <abp-form-content />
+        </abp-modal-body>
+        <abp-modal-footer buttons="@(AbpModalButtons.Cancel|AbpModalButtons.Save)"></abp-modal-footer>
+    </abp-modal>
+</abp-dynamic-form>*@
