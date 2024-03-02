@@ -3,6 +3,7 @@
 
 # Ignore appsetings.json
 /src/No1.Web/appsettings.json
+/src/No1.Web/appsettings.secrets.json
 
 # User-specific files
 *.suo
