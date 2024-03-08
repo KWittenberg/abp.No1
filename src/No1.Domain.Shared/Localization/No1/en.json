@@ -74,6 +74,7 @@
 
 
     "Menu:Home": "Home",
+    "Menu:OpenWeather": "Open Weather",
 
     "Menu:Admin": "Admin",
     "Menu:Users": "Users",

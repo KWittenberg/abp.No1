@@ -24,6 +24,7 @@ public class No1MenuContributor : IMenuContributor
 		var l = context.GetLocalizer<No1Resource>();
 
 		context.Menu.Items.Insert(0, new ApplicationMenuItem(No1Menus.Home, l["Menu:Home"], "~/", icon: "fas fa-home", order: 0));
+		context.Menu.Items.Insert(1, new ApplicationMenuItem(No1Menus.OpenWeather, l["Menu:OpenWeather"], "~/OpenWeather", icon: "bi bi-cloud", order: 0));
 
 		context.Menu
 			.AddItem(new ApplicationMenuItem(No1Menus.Admin, l["Menu:Admin"], icon: "fas fa-user", order: 1)

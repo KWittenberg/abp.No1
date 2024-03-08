@@ -7,4 +7,6 @@ namespace No1.Interfaces;
 public interface IOpenWeatherClient
 {
     Task<OpenWeatherOutput?> GetWeatherByCityName(string cityName, TemperatureUnit unit);
+
+    Task<OpenWeatherOutput?> GetWeatherByGeographicalCoordinates(double latitude, double longitude, TemperatureUnit unit);
 }

@@ -1,0 +1,52 @@
+﻿@page
+@using Microsoft.AspNetCore.Mvc.Localization
+@using No1.Localization
+@using No1.Models
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Alert
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Blockquote
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Modal
+@using Volo.Abp.AspNetCore.Mvc.UI.Layout
+@model No1.Web.Pages.OpenWeather.IndexModel
+
+@inject IPageLayout PageLayout
+@inject IHtmlLocalizer<No1Resource> L
+@{
+    var title = L["OpenWeather"].Value;
+    PageLayout.Content.Title = title;
+
+    var openWeather = Model.OpenWeather;
+    var iconUrl = "https://openweathermap.org/img/wn/";
+}
+
+@* @section scripts {
+    <abp-script src="/Pages/Categories/Categories.js" />
+} *@
+
+
+<!-- OpenWeather -->
+<div class="container">
+    <div class="d-flex align-items-center mb-3">
+        <div>
+            <h1 class="page-header mb-0">@title</h1>
+        </div>
+    </div>
+
+    <div class="center mt-5 text-center">
+        @if (openWeather is not null)
+        {
+            <h2>@openWeather.Name - @Convert.ToInt32(openWeather.Temp) °C</h2>
+            <h4><img src="@iconUrl@(openWeather.Icon + "@2x.png")" alt="Weather Icon"> @openWeather.Main - @openWeather.Description
+            </h4>
+            <p>FeelsLike: @Convert.ToInt32(openWeather.FeelsLike)</p>
+            <br />
+            <p>@openWeather.Latitude @openWeather.Longitude</p>
+            <br />
+            <p>Temp Max: @Math.Round(openWeather.TempMax, 1)</p>
+            <p>Temp Min: @Math.Round(openWeather.TempMin, 1)</p>
+        }
+        else
+        {
+            <p>No weather data available !</p>
+        }
+    </div>
+</div>

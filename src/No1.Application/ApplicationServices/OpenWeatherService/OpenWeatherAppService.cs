@@ -11,4 +11,9 @@ public class OpenWeatherAppService(IOpenWeatherClient openWeatherClient) : No1Ap
     {
         return await openWeatherClient.GetWeatherByCityName(cityName, unit);
     }
+
+    public async Task<OpenWeatherOutput?> GetWeatherByGeographicalCoordinates(double latitude = 45.3403, double longitude = 17.6853, TemperatureUnit unit = TemperatureUnit.Celsius)
+    {
+        return await openWeatherClient.GetWeatherByGeographicalCoordinates(latitude, longitude, unit);
+    }
 }

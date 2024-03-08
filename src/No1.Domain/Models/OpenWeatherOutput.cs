@@ -3,7 +3,12 @@
 public class OpenWeatherOutput
 {
     public int Id { get; set; }
-    public string Name { get; set; }
+    public string? Name { get; set; }
+
+    // Weather
+    public string? Main { get; set; }
+    public string? Description { get; set; }
+    public string? Icon { get; set; }
 
     // cord
     public double Latitude { get; set; }
