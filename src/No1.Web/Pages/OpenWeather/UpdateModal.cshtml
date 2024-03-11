@@ -1,0 +1,27 @@
+﻿@page
+@using No1.Localization
+@using Microsoft.Extensions.Localization
+@using No1.Enums
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Modal
+@model No1.Web.Pages.OpenWeather.UpdateModalModel
+@inject IStringLocalizer<No1Resource> L
+@{
+    Layout = null;
+}
+
+<form asp-page="/OpenWeather/UpdateModal">
+    <abp-modal>
+        <abp-modal-header title="@L["Update City"].Value"></abp-modal-header>
+        <abp-modal-body>
+            <abp-input asp-for="CityName" placeholder="...input New City" />
+            
+            @* <abp-input asp-for="Unit" placeholder="...input Unit" /> *@
+            
+            <select asp-for="Unit" asp-items="Html.GetEnumSelectList<TemperatureUnit>()">
+                <option value="">-- Odaberite jedinicu --</option>
+            </select>
+
+            </abp-modal-body>
+        <abp-modal-footer buttons="@(AbpModalButtons.Cancel | AbpModalButtons.Save)"></abp-modal-footer>
+    </abp-modal>
+</form>

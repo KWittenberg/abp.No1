@@ -1,37 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using No1.ApplicationServices.CountryService.CreateCity;
+﻿using No1.ApplicationServices.CountryService.CreateCity;
 using No1.ApplicationServices.CountryService.CreateCountry;
 using No1.ApplicationServices.CountryService.UpdateCity;
 using No1.ApplicationServices.CountryService.UpdateCountry;
 using No1.Entities.CountryAggregate;
 using No1.Interfaces;
 using No1.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Volo.Abp.Domain.Entities;
 
 namespace No1.ApplicationServices.CountryService;
 
-public class CountryAppService : No1AppService
+public class CountryAppService(ICountryRepository countryRepository) : No1AppService
 {
-    private readonly ICountryRepository _countryRepository;
-
-    public CountryAppService(ICountryRepository countryRepository)
-    {
-        _countryRepository = countryRepository;
-    }
-
     public async Task<IList<CountryOutput>> GetCountries()
     {
-        var countries = await _countryRepository.GetAllAsync();
+        var countries = await countryRepository.GetAllAsync();
 
         return ObjectMapper.Map<IList<Country>, IList<CountryOutput>>(countries);
     }
 
     public async Task<CountryOutput> GetCountry(Guid id)
     {
-        var country = await _countryRepository.GetAsync(country => country.Id == id);
+        var country = await countryRepository.GetAsync(country => country.Id == id);
 
         if (country is null)
         {
@@ -45,14 +38,14 @@ public class CountryAppService : No1AppService
     {
         var country = new Country(GuidGenerator.Create(), input.Name);
 
-        await _countryRepository.InsertAsync(country);
+        await countryRepository.InsertAsync(country);
 
         return ObjectMapper.Map<Country, CountryOutput>(country);
     }
 
     public virtual async Task<CountryOutput> UpdateCountry(UpdateCountryInput input)
     {
-        var country = await _countryRepository.GetAsync(country => country.Id == input.CountryId);
+        var country = await countryRepository.GetAsync(country => country.Id == input.CountryId);
 
         if (country is null)
         {
@@ -61,33 +54,34 @@ public class CountryAppService : No1AppService
 
         country.SetName(input.Name);
 
-        await _countryRepository.UpdateAsync(country);
+        await countryRepository.UpdateAsync(country);
 
         return ObjectMapper.Map<Country, CountryOutput>(country);
     }
 
     public async Task DeleteCountry(Guid id)
     {
-        var country = await _countryRepository.GetAsync(country => country.Id == id);
+        var country = await countryRepository.GetAsync(country => country.Id == id);
 
         if (country is null)
         {
             throw new EntityNotFoundException(typeof(Country), id);
         }
 
-        await _countryRepository.DeleteAsync(country);
+        await countryRepository.DeleteAsync(country);
     }
+
 
     public async Task<IList<CityOutput>> GetCities()
     {
-        var cities = await _countryRepository.GetCitiesAsync();
+        var cities = await countryRepository.GetCitiesAsync();
 
         return ObjectMapper.Map<IList<City>, IList<CityOutput>>(cities);
     }
 
     public async Task<CityOutput> GetCity(Guid id)
     {
-        var country = await _countryRepository.GetAsync(c => c.Cities.Any(city => city.Id == id));
+        var country = await countryRepository.GetAsync(c => c.Cities.Any(city => city.Id == id));
 
         if (country is null)
         {
@@ -103,10 +97,10 @@ public class CountryAppService : No1AppService
 
         return ObjectMapper.Map<City, CityOutput>(city);
     }
-    
+
     public async Task<CityOutput> GetCityByName(string cityName)
     {
-        var country = await _countryRepository.GetAsync(c => c.Cities.Any(city => city.Name == cityName));
+        var country = await countryRepository.GetAsync(c => c.Cities.Any(city => city.Name == cityName));
 
         if (country is null)
         {
@@ -125,7 +119,7 @@ public class CountryAppService : No1AppService
 
     public virtual async Task<CountryOutput> CreateCity(CreateCityInput input)
     {
-        var country = await _countryRepository.GetAsync(country => country.Id == input.CountryId);
+        var country = await countryRepository.GetAsync(country => country.Id == input.CountryId);
 
         if (country is null)
         {
@@ -134,14 +128,14 @@ public class CountryAppService : No1AppService
 
         country.AddCity(GuidGenerator.Create(), input.Name, input.PostCode, input.Longitude, input.Latitude);
 
-        await _countryRepository.UpdateAsync(country);
+        await countryRepository.UpdateAsync(country);
 
         return ObjectMapper.Map<Country, CountryOutput>(country);
     }
 
     public virtual async Task<CountryOutput> UpdateCity(UpdateCityInput input)
     {
-        var country = await _countryRepository.GetAsync(country => country.Id == input.CountryId);
+        var country = await countryRepository.GetAsync(country => country.Id == input.CountryId);
 
         if (country is null)
         {
@@ -150,14 +144,14 @@ public class CountryAppService : No1AppService
 
         country.UpdateCity(input.CityId, input.Name);
 
-        await _countryRepository.UpdateAsync(country);
+        await countryRepository.UpdateAsync(country);
 
         return ObjectMapper.Map<Country, CountryOutput>(country);
     }
 
     public async Task<CountryOutput> DeleteCity(Guid cityId)
     {
-        var country = await _countryRepository
+        var country = await countryRepository
             .GetAsync(country => country.Cities.Any(city => city.Id == cityId));
 
         if (country is null)
@@ -167,7 +161,7 @@ public class CountryAppService : No1AppService
 
         country.RemoveCity(cityId);
 
-        await _countryRepository.UpdateAsync(country);
+        await countryRepository.UpdateAsync(country);
 
         return ObjectMapper.Map<Country, CountryOutput>(country);
     }

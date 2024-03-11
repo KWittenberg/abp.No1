@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using No1.ApplicationServices.OpenWeatherService;
 using No1.Enums;
 using No1.Models;
@@ -6,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace No1.Web.Pages.OpenWeather;
 
-public class IndexModel(OpenWeatherAppService openWeather) : No1PageModel
+public class UpdateModalModel(OpenWeatherAppService openWeather) : PageModel
 {
+
     [BindProperty]
     public string CityName { get; set; }
 
@@ -17,8 +19,9 @@ public class IndexModel(OpenWeatherAppService openWeather) : No1PageModel
     public OpenWeatherOutput? OpenWeather { get; set; }
 
 
-    public async Task OnGetAsync(string CityName = "Požega, HR", TemperatureUnit Unit = TemperatureUnit.Celsius)
+    public async Task<IActionResult> OnPostAsync()
     {
         OpenWeather = await openWeather.GetWeatherByCityName(CityName, Unit);
+        return RedirectToPage("/OpenWeather/Index", new { CityName, Unit });
     }
 }

@@ -1,5 +1,6 @@
 ﻿@page
 @using Microsoft.AspNetCore.Mvc.Localization
+@using No1.Enums
 @using No1.Localization
 @using No1.Models
 @using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Alert
@@ -18,9 +19,9 @@
     var iconUrl = "https://openweathermap.org/img/wn/";
 }
 
-@* @section scripts {
-    <abp-script src="/Pages/Categories/Categories.js" />
-} *@
+@section scripts {
+    <abp-script src="/Pages/OpenWeather/OpenWeather.js" />
+}
 
 
 <!-- OpenWeather -->
@@ -29,13 +30,32 @@
         <div>
             <h1 class="page-header mb-0">@title</h1>
         </div>
+        <div class="mt-3 ms-auto">
+            <a id="Update" class="btn btn-primary btn-rounded px-4 rounded-pill"><i class="fa fa-plus fa-lg me-2 ms-n2 text-success-900"></i> @L["Update City"].Value</a>
+        </div>
     </div>
+
+    <div class="card mt-5" style="width: 18rem;">
+        <img src="@iconUrl@(openWeather.Icon+ "@4x.png")" class="card-img-top" alt="Weather Icon">
+        <div class="card-body">
+            <h5 class="card-title">@openWeather.Name @Convert.ToInt32(openWeather.Temp)</h5>
+            <p class="card-text"><b>@openWeather.Main - @openWeather.Description</b></p>
+            <p class="card-text">FeelsLike: @Convert.ToInt32(openWeather.FeelsLike)</p>
+            
+            
+            @* <a href="#" class="btn btn-primary">Go somewhere</a> *@
+        </div>
+    </div>
+    
+    
+    
 
     <div class="center mt-5 text-center">
         @if (openWeather is not null)
         {
-            <h2>@openWeather.Name - @Convert.ToInt32(openWeather.Temp) °C</h2>
-            <h4><img src="@iconUrl@(openWeather.Icon + "@2x.png")" alt="Weather Icon"> @openWeather.Main - @openWeather.Description
+            <h2>@openWeather.Name @Convert.ToInt32(openWeather.Temp) °C</h2>
+            <h4>
+                <img src="@iconUrl@(openWeather.Icon + "@2x.png")" alt="Weather Icon"> @openWeather.Main - @openWeather.Description
             </h4>
             <p>FeelsLike: @Convert.ToInt32(openWeather.FeelsLike)</p>
             <br />
@@ -49,4 +69,16 @@
             <p>No weather data available !</p>
         }
     </div>
+    
+    <abp-card background="Dark">
+        <abp-card-body>
+            <abp-table id="OpenWeatherTable"></abp-table>
+        </abp-card-body>
+    </abp-card>
+
+    <abp-card background="Light">
+        <abp-card-body>
+            <div id="OpenWeatherData" data-city-name="@Model.CityName" data-unit="@Model.Unit"></div>
+        </abp-card-body>
+    </abp-card>
 </div>
