@@ -13,7 +13,7 @@ public class OpenWeatherOutput
     // cord
     public double Latitude { get; set; }
     public double Longitude { get; set; }
-    
+
     public int Timezone { get; set; }
     public int Cod { get; set; }
 

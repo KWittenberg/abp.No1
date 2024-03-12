@@ -34,7 +34,7 @@ public class OpenWeatherClient(HttpClient client, IOptions<OpenWeatherOptions> w
         //return ProcessWeatherData(dContent);
         return mapper.Map<OpenWeatherModel, OpenWeatherOutput>(dContent);
     }
-    
+
 
     private static string GetUnitString(TemperatureUnit unit)
     {
@@ -280,7 +280,7 @@ public class OpenWeatherClient(HttpClient client, IOptions<OpenWeatherOptions> w
     //    };
     //}
 
-    
+
     private double ConvertKelvinToCelsius(double kelvin)
     {
         return (Temperature.FromKelvins(kelvin)).DegreesCelsius;
