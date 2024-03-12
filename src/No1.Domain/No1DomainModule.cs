@@ -64,6 +64,7 @@ public class No1DomainModule : AbpModule
         ConfigureCrm(context);
         ConfigureSms(context);
         ConfigureOpenWeather(context);
+        ConfigureTmdb(context);
     }
 
     private void ConfigureMultiTenancy()
@@ -166,5 +167,10 @@ public class No1DomainModule : AbpModule
     private void ConfigureOpenWeather(ServiceConfigurationContext context)
     {
         Configure<OpenWeatherOptions>(context.Services.GetConfiguration().GetSection(OpenWeatherOptions.Section));
+    }
+
+    private void ConfigureTmdb(ServiceConfigurationContext context)
+    {
+        Configure<TmdbOptions>(context.Services.GetConfiguration().GetSection(TmdbOptions.Section));
     }
 }

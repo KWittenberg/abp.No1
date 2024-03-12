@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using No1.Crm;
 using No1.Interfaces;
 using No1.OpenWeather;
+using No1.Tmdb;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.AutoMapper;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
@@ -45,6 +46,7 @@ public class No1EntityFrameworkCoreModule : AbpModule
 
         ConfigureCrmClient(context);
         ConfigureOpenWeatherClient(context);
+        ConfigureTmdbClient(context);
 
 
         context.Services.AddAbpDbContext<No1DbContext>(options =>
@@ -114,5 +116,11 @@ public class No1EntityFrameworkCoreModule : AbpModule
     {
         // Configure Typed HttpClientFactory
         context.Services.AddHttpClient<IOpenWeatherClient, OpenWeatherClient>();
+    }
+
+    private void ConfigureTmdbClient(ServiceConfigurationContext context)
+    {
+        context.Services.AddTransient<TmdbAuthenticationHandler>();
+        context.Services.AddHttpClient<ITmdbClient, TmdbClient>().AddHttpMessageHandler<TmdbAuthenticationHandler>();
     }
 }
