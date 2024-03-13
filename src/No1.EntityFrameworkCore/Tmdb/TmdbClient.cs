@@ -21,7 +21,14 @@ public class TmdbClient(HttpClient client, IOptions<TmdbOptions> tmdb) : ITmdbCl
         //return await client.GetFromJsonAsync<TmdbPopularMoviePagedResponse>($"{tmdb.Value.BaseUrl}movie/popular?language=en-US&page={page}");
 
         var response = await client.GetAsync($"{tmdb.Value.BaseUrl}movie/popular?language=en-US&page={page}");
-        if (!response.IsSuccessStatusCode) throw new InvalidResponseException(response.StatusCode.ToString());
+        if (!response.IsSuccessStatusCode)
+        {
+            var errorContent = await response.Content.ReadAsStringAsync();
+            var dContent = JsonSerializer.Deserialize<TmdbErrorModel>(errorContent);
+            if (dContent is null) throw new InvalidResponseException();
+
+            throw new InvalidResponseException($"Code: {dContent.StatusCode} | Success: {dContent.Success}", dContent);
+        }
 
         var content = await response.Content.ReadAsStringAsync();
         return JsonSerializer.Deserialize<TmdbPopularMoviePagedResponse>(content);
