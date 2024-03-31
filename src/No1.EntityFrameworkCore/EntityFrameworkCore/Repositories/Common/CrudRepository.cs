@@ -22,6 +22,7 @@ public abstract class CrudRepository<TEntity> : ICrudRepository<TEntity> where T
         _dbContextProvider = dbContextProvider;
     }
 
+
     public async Task<IList<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>>? predicate = null, CancellationToken cancellationToken = default)
     {
         var query = await GetQueryableAsync();
@@ -46,6 +47,7 @@ public abstract class CrudRepository<TEntity> : ICrudRepository<TEntity> where T
         return entity;
     }
 
+
     public async Task<int> GetCountAsync(CancellationToken cancellationToken = default)
     {
         var query = await GetQueryableAsync();
@@ -54,12 +56,14 @@ public abstract class CrudRepository<TEntity> : ICrudRepository<TEntity> where T
         return count;
     }
 
+
     protected async Task<No1DbContext> GetContextAsync()
     {
         var context = await _dbContextProvider.GetDbContextAsync();
 
         return context;
     }
+
 
     protected async Task<DbSet<TEntity>> GetDbSetAsync()
     {
@@ -74,6 +78,7 @@ public abstract class CrudRepository<TEntity> : ICrudRepository<TEntity> where T
 
         return context.Set<T>();
     }
+
 
     protected async Task<IQueryable<TEntity>> GetQueryableAsync()
     {
@@ -90,6 +95,7 @@ public abstract class CrudRepository<TEntity> : ICrudRepository<TEntity> where T
     }
 
     protected abstract IQueryable<TEntity> WithDetails(IQueryable<TEntity> query);
+
 
     public async Task<TEntity> InsertAsync(TEntity entity, CancellationToken cancellationToken = default)
     {
@@ -145,6 +151,7 @@ public abstract class CrudRepository<TEntity> : ICrudRepository<TEntity> where T
         }
     }
 
+
     public async Task<TEntity> UpdateAsync(TEntity entity, CancellationToken cancellationToken = default)
     {
         try
@@ -198,6 +205,7 @@ public abstract class CrudRepository<TEntity> : ICrudRepository<TEntity> where T
             throw;
         }
     }
+
 
     public async Task<TEntity> DeleteAsync(TEntity entity, CancellationToken cancellationToken = default)
     {

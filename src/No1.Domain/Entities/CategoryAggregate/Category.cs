@@ -32,6 +32,6 @@ public class Category : AuditedAggregateRoot<Guid>//, IMultiLingualObject<Catego
 
     public void SetDescription(string? description)
     {
-        Description = Check.Length(description, nameof(description), CategoryConsts.DescriptionLength);
+        Description = Check.NotNullOrWhiteSpace(description, nameof(description), CategoryConsts.DescriptionLength);
     }
 }

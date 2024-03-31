@@ -1,8 +1,8 @@
 ﻿using No1.Exceptions;
+using No1.MultiLingualObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using No1.MultiLingualObjects;
 using Volo.Abp;
 using Volo.Abp.Domain.Entities;
 using Volo.Abp.Domain.Entities.Auditing;
@@ -36,49 +36,24 @@ public class Country : AuditedAggregateRoot<Guid>, IMultiLingualObject<CountryTr
 
     public void AddCity(Guid cityId, string name, string postCode, double longitude, double latitude)
     {
-        if (name is null)
-        {
-            throw new ArgumentNullException(nameof(name));
-        }
-
-        if (Cities.Any(x => x.Name.ToLower() == name.ToLower()))
-        {
-            throw new EntityAlreadyExistsException(typeof(City), name);
-        }
+        ArgumentNullException.ThrowIfNull(name);
+        if (Cities.Any(x => x.Name.ToLower() == name.ToLower())) throw new EntityAlreadyExistsException(typeof(City), name);
 
         Cities.Add(new City(cityId, name, postCode, longitude, latitude));
     }
 
     public void UpdateCity(Guid cityId, string name)
     {
-        if (name is null)
-        {
-            throw new ArgumentNullException(nameof(name));
-        }
-
-        var city = Cities.FirstOrDefault(x => x.Id == cityId);
-
-        if (city is null)
-        {
-            throw new EntityNotFoundException(typeof(City));
-        }
-
-        if (Cities.Any(x => x.Id != city.Id && x.Name.ToLower() == name.ToLower()))
-        {
-            throw new EntityAlreadyExistsException(typeof(City), name);
-        }
+        ArgumentNullException.ThrowIfNull(name);
+        var city = Cities.FirstOrDefault(x => x.Id == cityId) ?? throw new EntityNotFoundException(typeof(City));
+        if (Cities.Any(x => x.Id != city.Id && x.Name.ToLower() == name.ToLower())) throw new EntityAlreadyExistsException(typeof(City), name);
 
         city.SetName(name);
     }
 
     public void RemoveCity(Guid cityId)
     {
-        var city = Cities.FirstOrDefault(x => x.Id == cityId);
-
-        if (city is null)
-        {
-            throw new EntityNotFoundException(typeof(City));
-        }
+        var city = Cities.FirstOrDefault(x => x.Id == cityId) ?? throw new EntityNotFoundException(typeof(City));
 
         Cities.Remove(city);
     }

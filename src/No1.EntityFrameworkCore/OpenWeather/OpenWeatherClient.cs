@@ -8,7 +8,6 @@ using System.Linq;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
-using UnitsNet;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.ObjectMapping;
 
@@ -281,13 +280,13 @@ public class OpenWeatherClient(HttpClient client, IOptions<OpenWeatherOptions> w
     //}
 
 
-    private double ConvertKelvinToCelsius(double kelvin)
-    {
-        return (Temperature.FromKelvins(kelvin)).DegreesCelsius;
-    }
+    //private double ConvertKelvinToCelsius(double kelvin)
+    //{
+    //    return (Temperature.FromKelvins(kelvin)).DegreesCelsius;
+    //}
 
-    private double ConvertKelvinToFahrenheit(double kelvin)
-    {
-        return (Temperature.FromKelvins(kelvin)).DegreesFahrenheit;
-    }
+    //private double ConvertKelvinToFahrenheit(double kelvin)
+    //{
+    //    return (Temperature.FromKelvins(kelvin)).DegreesFahrenheit;
+    //}
 }
